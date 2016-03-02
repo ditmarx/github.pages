@@ -143,7 +143,7 @@
 
       	if (this.direction === "right")
         {
-          if (head.col !== widthInBlocks -3)
+          if (head.col !== widthInBlocks -2)
       	    newHead = new Block(head.col +1, head.row);
           else
             newHead = new Block(1, head.row);
@@ -153,11 +153,11 @@
           if (head.col !== 1)
       	    newHead = new Block(head.col -1, head.row);
           else
-            newHead = new Block(widthInBlocks -2, head.row);
+            newHead = new Block(widthInBlocks -1, head.row);
         }      	
       	else if (this.direction === "down")
         {
-          if (head.row !== heightInBlocks -3)
+          if (head.row !== heightInBlocks -2)
       	    newHead = new Block(head.col, head.row +1);
           else
             newHead = new Block(head.col, 1);
@@ -167,7 +167,7 @@
           if (head.row !== 1)
       	    newHead = new Block(head.col, head.row -1);
           else
-            newHead = new Block(head.col, heightInBlocks -2);
+            newHead = new Block(head.col, heightInBlocks -1);
         }
 
         if (this.checkCollision(newHead))
@@ -199,8 +199,8 @@
       {
       	var leftCollision = (head.col === 0);
       	var topCollision = (head.row === 0);
-      	var rightCollision = (head.col === widthInBlocks - 1 );
-      	var bootomCollsision = (head.row === heightInBlocks -1);
+      	var rightCollision = (head.col === widthInBlocks );
+      	var bootomCollsision = (head.row === heightInBlocks );
 
       	var wallCollision = leftCollision
       	                 || topCollision
