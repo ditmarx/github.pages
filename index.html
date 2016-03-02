@@ -146,14 +146,29 @@
           if (head.col !== widthInBlocks -3)
       	    newHead = new Block(head.col +1, head.row);
           else
-            newHead = new Block(0, head.row);
+            newHead = new Block(1, head.row);
         }
-      	else if (this.direction === "down")
-      	  newHead = new Block(head.col, head.row + 1);
       	else if (this.direction === "left")
-      	  newHead = new Block(head.col -1, head.row);
+        {
+          if (head.col !== 1)
+      	    newHead = new Block(head.col -1, head.row);
+          else
+            newHead = new Block(widthInBlocks -2, head.row);
+        }      	
+      	else if (this.direction === "down")
+        {
+          if (head.row !== heightInBlocks -3)
+      	    newHead = new Block(head.col, head.row +1);
+          else
+            newHead = new Block(head.col, 1);
+        }
       	else if (this.direction === "up")
-      	  newHead = new Block(head.col, head.row -1);
+        {
+          if (head.row !== 1)
+      	    newHead = new Block(head.col, head.row -1);
+          else
+            newHead = new Block(head.col, heightInBlocks -2);
+        }
 
         if (this.checkCollision(newHead))
         {
