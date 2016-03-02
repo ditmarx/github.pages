@@ -30,15 +30,16 @@
       var heightInBlocks = height / blockSize;
 
       var score = 0;
+      var speed = 1;
 
       var circle = function (x, y, radius, fillCircle)
       {
       	ctx.beginPath();
       	ctx.arc(x, y, radius, 0, Math.PI*2, false);
       	if (fillCircle)
-   		  ctx.fill();
-   		else
-   		  ctx.stroke();
+   		    ctx.fill();
+   		  else
+   		    ctx.stroke();
       };
 
       var drawBorder = function()
@@ -55,6 +56,15 @@
         ctx.textAlign = "left";
         ctx.textBaseline = "top";
         ctx.fillText("Score: " + score, blockSize, blockSize);
+      };
+
+      var drawSpeed = function()
+      {
+        ctx.font = "20px Courier";
+        ctx.fillStyle = "Black";
+        ctx.textAlign = "left";
+        ctx.textBaseline = "top";
+        ctx.fillText("Speed: " + speed, blockSize, 3*blockSize);
       };
 
       var gameOver = function()
@@ -140,6 +150,7 @@
         if (newHead.equal(apple.position))
         {
           score++;
+          speed = 1 + score/10;
           apple.move();
         }
         else
@@ -206,11 +217,12 @@
       {
       	ctx.clearRect(0, 0, width, height);
       	drawScore();
+      	drawSpeed();
       	snake.move();
       	snake.draw();
       	apple.draw();
       	drawBorder();
-      }, 100);
+      }, 100/speed);
 
 
       var directions = {
