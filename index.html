@@ -150,7 +150,12 @@
         if (newHead.equal(apple.position))
         {
           score++;
-          speed = 1 + score/10;
+
+          if (score<100)
+            speed = 1 + score/10;
+          else 
+            speed = 11;
+
           apple.move();
         }
         else
@@ -212,17 +217,27 @@
       var snake = new Snake();
       var apple = new Apple();
 
+      var cycleCounter = 0;
 
       var intervalId = setInterval(function()
       {
-      	ctx.clearRect(0, 0, width, height);
-      	drawScore();
-      	drawSpeed();
-      	snake.move();
-      	snake.draw();
-      	apple.draw();
-      	drawBorder();
-      }, 100/speed);
+        if (cycleCounter >= 11 - speed)
+        {
+
+          ctx.clearRect(0, 0, width, height);
+          drawScore();
+          drawSpeed();
+          snake.move();
+          snake.draw();
+          apple.draw();
+          drawBorder();
+
+          cycleCounter = 0;
+        }
+        else
+          cycleCounter++;
+
+      }, 10);
 
 
       var directions = {
