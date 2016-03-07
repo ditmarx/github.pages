@@ -6,6 +6,43 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![end if]-->
+    
+    <style>
+    div {
+        border: 2px solid black;
+        margin: 20px;
+        
+        position: absolute;
+        height: 100px;
+        width: 100px;
+
+        font-size: 80px;
+        text-align: center;
+    }
+    
+    #btnLeft {
+        top: 140px;
+        left: 450px;
+    }
+
+    #btnRight {
+        top: 140px;
+        left: 670px;
+    }
+    
+    #btnUp {
+        top: 30px;
+        left: 560px;
+    }    
+
+    #btnDown {
+        top: 250px;
+        left: 560px;
+    }
+    
+        
+    </style>
+
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
   </head>
   <body>
@@ -16,6 +53,11 @@
     -->
     
     <canvas id="canvas" width="400" height="400"></canvas>
+
+    <div id="btnLeft"><span>◀</span></div>
+    <div id="btnRight"><span>▶</span></div> 
+    <div id="btnDown"><span>▼</span></div> 
+    <div id="btnUp"><span>▲</span></div>  
 
     <script type="text/javascript">
 
@@ -130,7 +172,7 @@
 
       	this.direction = this.nextDirection;
 
-        /*
+        
       	if (this.direction === "right")
       	  newHead = new Block(head.col +1, head.row);
       	else if (this.direction === "down")
@@ -139,8 +181,8 @@
       	  newHead = new Block(head.col -1, head.row);
       	else if (this.direction === "up")
       	  newHead = new Block(head.col, head.row -1);
-        */
-
+        
+/*
       	if (this.direction === "right")
         {
           if (head.col !== widthInBlocks -2)
@@ -169,7 +211,7 @@
           else
             newHead = new Block(head.col, heightInBlocks -1);
         }
-
+*/
         if (this.checkCollision(newHead))
         {
           gameOver();
@@ -199,8 +241,8 @@
       {
       	var leftCollision = (head.col === 0);
       	var topCollision = (head.row === 0);
-      	var rightCollision = (head.col === widthInBlocks );
-      	var bootomCollsision = (head.row === heightInBlocks );
+      	var rightCollision = (head.col === widthInBlocks -1 );
+      	var bootomCollsision = (head.row === heightInBlocks -1 );
 
       	var wallCollision = leftCollision
       	                 || topCollision
@@ -285,6 +327,25 @@
       	  snake.setDirection(newDirection);
       });
 
+      $("#btnLeft").click(function(event)
+      {
+      	  snake.setDirection("left");
+      });
+
+      $("#btnDown").click(function(event)
+      {
+      	  snake.setDirection("down");
+      });
+
+      $("#btnUp").click(function(event)
+      {
+      	  snake.setDirection("up");
+      });
+
+      $("#btnRight").click(function(event)
+      {
+      	  snake.setDirection("right");
+      });
 
     </script>
 
