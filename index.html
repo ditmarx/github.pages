@@ -338,21 +338,29 @@
 
       $("#btnLeft").click(function(event)
       {
+      	  event.stopPropagation();
+      	  event.preventDefault();
       	  snake.setDirection("left");
       });
 
       $("#btnDown").click(function(event)
       {
+      	  event.stopPropagation();
+      	  event.preventDefault();
       	  snake.setDirection("down");
       });
 
       $("#btnUp").click(function(event)
       {
+      	  event.stopPropagation();
+      	  event.preventDefault();
       	  snake.setDirection("up");
       });
 
       $("#btnRight").click(function(event)
       {
+      	  event.stopPropagation();
+      	  event.preventDefault();
       	  snake.setDirection("right");
       });
 
